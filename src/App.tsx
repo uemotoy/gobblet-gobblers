@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// #region import宣言
+import { Divider } from "@mui/material";
 
+import GGGame from "UI/Game/GGGame";
+import "./App.scss";
+// #endregion
+// #region 型定義
+// #endregion
+// #region 定数
+// #endregion
+// #region 内部関数
+// #endregion
+// #region 公開関数
+// #endregion
+
+// #region 公開モジュール
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="app">
+      <header className="app-header">
+        <div className="app-header-title">GOBBLET GOBBLERS</div>
       </header>
+      <Divider />
+      <div className="app-body">
+        <GGGame />
+      </div>
     </div>
   );
 }
 
 export default App;
+// #endregion

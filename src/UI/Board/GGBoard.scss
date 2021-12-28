@@ -1,0 +1,26 @@
+@import "~styles/variables";
+
+.gg-board {
+  display: grid;
+  grid-template-columns: $square-size $square-size $square-size;
+  grid-template-rows: $square-size $square-size $square-size;
+
+  border: 4px solid $border-color-base;
+
+  .square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-top: 2px solid $gg-primary-color;
+    border-left: 2px solid $gg-secondary-color;
+
+    &:nth-child(-n + 3) {
+      border-top: 0;
+    }
+
+    &:nth-child(3n + 1) {
+      border-left: 0;
+    }
+  }
+}
