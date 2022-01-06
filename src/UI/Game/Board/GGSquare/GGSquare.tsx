@@ -1,16 +1,24 @@
 // #region import宣言
 import { FC, useMemo } from 'react';
 import { useDrop } from 'react-dnd';
+import { useDispatch } from 'react-redux';
+import { movePieceFromStandAction } from 'store/game/actions';
 
 import GGPiece from 'UI/shared/GGPiece/GGPiece';
-import { GG_PIECE } from 'utils/constants';
-import { Piece } from 'utils/types';
+import { DRAG_FROM, GG_PIECE } from 'utils/constants';
+import { DragFrom, Piece } from 'utils/types';
 
 import './GGSquare.scss';
 // #endregion
 // #region 型定義
 type Props = {
   pieceHistory: Piece[];
+  index: number;
+};
+
+type GGDropResult = {
+  piece: Piece;
+  dragFrom: DragFrom;
 };
 
 // #endregion
@@ -21,10 +29,12 @@ type Props = {
 // #region 公開関数
 // #endregion
 // #region 公開モジュール
-const GGSquare: FC<Props> = ({ pieceHistory }) => {
+const GGSquare: FC<Props> = ({ pieceHistory, index }) => {
   // #region state変数
   // #endregion
   // #region 内部変数
+  const dispatch = useDispatch();
+
   const displayedPiece = useMemo(
     () => (pieceHistory.length > 0 ? pieceHistory[pieceHistory.length - 1] : undefined),
     [pieceHistory]
@@ -32,14 +42,15 @@ const GGSquare: FC<Props> = ({ pieceHistory }) => {
 
   const [, dropRef] = useDrop(() => ({
     accept: GG_PIECE,
-    drop: dropEnd,
+    drop: dropPiece,
   }));
   // #endregion
   // #region 内部関数
 
-  function dropEnd(item: Piece) {
-    console.log(item);
-    console.log(displayedPiece);
+  function dropPiece({ piece, dragFrom }: GGDropResult) {
+    if (dragFrom === DRAG_FROM.STAND) {
+      dispatch(movePieceFromStandAction(piece, index));
+    }
   }
 
   // #endregion
@@ -50,7 +61,7 @@ const GGSquare: FC<Props> = ({ pieceHistory }) => {
   // #region レンダリング処理
   return (
     <div className="gg_square" ref={dropRef}>
-      {displayedPiece && <GGPiece piece={displayedPiece} />}
+      {displayedPiece && <GGPiece piece={displayedPiece} isBoardPiece={true} />}
     </div>
   );
   // #endregion

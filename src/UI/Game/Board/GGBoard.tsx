@@ -36,7 +36,7 @@ const GGBoard: FC<Props> = ({ className }) => {
   return (
     <div className={classNames('gg_board', className)}>
       {boardPieces.map((piece, index) => (
-        <GGSquare key={index} pieceHistory={piece} />
+        <GGSquare key={index} pieceHistory={piece} index={index} />
       ))}
     </div>
   );
