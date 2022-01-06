@@ -1,5 +1,4 @@
 // #region import宣言
-import { Piece } from "./types";
 // #endregion
 // #region 型定義
 // #endregion
@@ -8,11 +7,8 @@ import { Piece } from "./types";
 // #region 内部関数
 // #endregion
 // #region 公開関数
-
-export function encodePieceInfo(piece: Piece, index: number): string {
-  return `${piece.player}__${piece.size}__${index}`;
-}
-
+// 仮のExport宣言。ヘルパーメソッド実装時に除外する
+export {};
 // #endregion
 // #region 公開モジュール
 // #endregion
