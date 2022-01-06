@@ -1,13 +1,13 @@
 // #region import宣言
-import { FC } from "react";
-import { useDrag } from "react-dnd";
-import { Avatar } from "@mui/material";
-import classNames from "classnames";
+import { FC } from 'react';
+import { useDrag } from 'react-dnd';
+import { Avatar } from '@mui/material';
+import classNames from 'classnames';
 
-import { Piece } from "utils/types";
-import { GG_PIECE, PLAYER } from "utils/constants";
+import { Piece } from 'utils/types';
+import { GG_PIECE, PLAYER } from 'utils/constants';
 
-import "./GGPiece.scss";
+import './GGPiece.scss';
 // #endregion
 // #region 型定義
 type Props = {
@@ -37,10 +37,10 @@ const GGPiece: FC<Props> = ({ className, piece }) => {
       ref={dragRef}
       classes={{
         root: classNames(
-          "gg-piece piece",
+          'gg_piece piece',
           piece.size,
-          piece.player === PLAYER.P1 ? "p1" : "p2",
-          { "is-dragging": isDragging },
+          piece.player === PLAYER.P1 ? 'p1' : 'p2',
+          { 'is-dragging': isDragging },
           className
         ),
       }}

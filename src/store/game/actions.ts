@@ -1,0 +1,1 @@
+export const UPDATE_BOARD = "BOARD/UPDATE_BOARD";

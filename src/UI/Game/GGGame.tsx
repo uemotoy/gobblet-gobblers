@@ -1,12 +1,12 @@
 // #region import宣言
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import GGPieceStand from "UI/PieceStand/GGPieceStand";
-import GGBoard from "UI/Board/GGBoard";
-import { PLAYER } from "utils/constants";
+import GGPieceStand from 'UI/Game/PieceStand/GGPieceStand';
+import GGBoard from 'UI/Game/Board/GGBoard';
+import { PLAYER } from 'utils/constants';
 
-import "./GGGame.scss";
+import './GGGame.scss';
 // #endregion
 // #region 型定義
 // #endregion
@@ -31,7 +31,7 @@ const GGGame = () => {
   // #endregion
   // #region レンダリング処理
   return (
-    <div className="gg-game">
+    <div className="gg_game">
       <DndProvider backend={HTML5Backend}>
         <GGBoard />
         <div className="piece-stand-container">

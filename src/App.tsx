@@ -1,7 +1,9 @@
 // #region import宣言
 import { Divider } from "@mui/material";
+import { Provider } from "react-redux";
 
 import GGGame from "UI/Game/GGGame";
+import store from "./store";
 import "./App.scss";
 // #endregion
 // #region 型定義
@@ -22,7 +24,9 @@ function App() {
       </header>
       <Divider />
       <div className="app-body">
-        <GGGame />
+        <Provider store={store}>
+          <GGGame />
+        </Provider>
       </div>
     </div>
   );
