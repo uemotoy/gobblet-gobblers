@@ -41,7 +41,7 @@ const GGPieceStand: FC<Props> = ({ className, player }) => {
   return (
     <div className={classNames('gg_piece-stand', className)}>
       {pieces.map((piece, index) => (
-        <GGPiece key={index} className="piece-item" piece={piece} isBoardPiece={false} />
+        <GGPiece key={index} className="piece-item" piece={piece} />
       ))}
     </div>
   );

@@ -10,8 +10,3 @@ export const PLAYER = {
 } as const;
 
 export const GG_PIECE = 'GG-PIECE';
-
-export const DRAG_FROM = {
-  BOARD: 'Board',
-  STAND: 'STAND',
-} as const;

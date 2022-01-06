@@ -1,7 +1,7 @@
 // #region import宣言
 import { PIECE_SIZE, PLAYER } from 'utils/constants';
 import { Piece } from 'utils/types';
-import { ActionType, MOVE_PIECE_FROM_STAND } from './actions';
+import { ActionType, MOVE_PIECE_FROM_STAND, MOVE_PIECE_ON_BOARD } from './actions';
 // #endregion
 
 // #region 型定義
@@ -41,7 +41,8 @@ const INITIAL_STATE: GameState = {
 // #region 公開モジュール
 export function reducer(state = INITIAL_STATE, action: ActionType<any>) {
   switch (action.type) {
-    case MOVE_PIECE_FROM_STAND:
+    // #region MOVE_PIECE_FROM_STAND
+    case MOVE_PIECE_FROM_STAND: {
       const { payload } = action;
 
       // 盤面の更新
@@ -49,7 +50,6 @@ export function reducer(state = INITIAL_STATE, action: ActionType<any>) {
         // 移動先のマスに駒情報を追加する
         if (index === payload.toIndex) {
           return [...square, payload.piece];
-          // square.push(payload.piece);
         }
         return square;
       });
@@ -80,9 +80,29 @@ export function reducer(state = INITIAL_STATE, action: ActionType<any>) {
           player2Pieces: newStandPieces,
         };
       }
+    }
+    // #endregion
 
-    default:
+    case MOVE_PIECE_ON_BOARD: {
+      const { payload } = action;
+      // 移動元のマスと移動先のマスの駒情報を更新する
+      const newBoard = state.boardPieces.map((square, index) => {
+        // 移動先のマスに駒情報を追加する
+        if (index === payload.toIndex) {
+          return [...square, payload.piece];
+        }
+        if (index === payload.fromIndex) {
+          return [...square].slice(0, -1);
+        }
+        return square;
+      });
+
+      return { ...state, boardPieces: newBoard };
+    }
+
+    default: {
       return state;
+    }
   }
 }
 

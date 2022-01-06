@@ -2,11 +2,12 @@
 import { FC, useMemo } from 'react';
 import { useDrop } from 'react-dnd';
 import { useDispatch } from 'react-redux';
-import { movePieceFromStandAction } from 'store/game/actions';
+import { movePieceFromStandAction, movePieceStandOnBoardAction } from 'store/game/actions';
 
 import GGPiece from 'UI/shared/GGPiece/GGPiece';
-import { DRAG_FROM, GG_PIECE } from 'utils/constants';
-import { DragFrom, Piece } from 'utils/types';
+import { GG_PIECE } from 'utils/constants';
+import { validatePieceMoving } from 'utils/helper';
+import { Piece } from 'utils/types';
 
 import './GGSquare.scss';
 // #endregion
@@ -18,7 +19,7 @@ type Props = {
 
 type GGDropResult = {
   piece: Piece;
-  dragFrom: DragFrom;
+  dragFrom: number;
 };
 
 // #endregion
@@ -40,16 +41,41 @@ const GGSquare: FC<Props> = ({ pieceHistory, index }) => {
     [pieceHistory]
   );
 
-  const [, dropRef] = useDrop(() => ({
-    accept: GG_PIECE,
-    drop: dropPiece,
-  }));
+  const [, dropRef] = useDrop(
+    () => ({
+      accept: GG_PIECE,
+      canDrop: canDropPiece,
+      drop: dropPiece,
+    }),
+    [pieceHistory]
+  );
   // #endregion
   // #region 内部関数
+  /**
+   * マスに駒をドロップ可能か検証する。useDropのcanDropに渡す関数
+   * @param ドロップ結果
+   * @returns ドロップ可能ならtrue, 不可ならfalse
+   */
+  function canDropPiece({ piece }: GGDropResult): boolean {
+    // マスに駒が置いてない場合はDrop可能
+    if (pieceHistory.length === 0) {
+      return true;
+    }
+    // マスに駒が置いてある場合は、Drop可能か検証する
+    else {
+      return validatePieceMoving(piece, pieceHistory[pieceHistory.length - 1]);
+    }
+  }
 
+  /**
+   * 駒をドロップした際の処理。useDropのdropに渡す関数
+   * @param ドロップ結果
+   */
   function dropPiece({ piece, dragFrom }: GGDropResult) {
-    if (dragFrom === DRAG_FROM.STAND) {
+    if (dragFrom < 0) {
       dispatch(movePieceFromStandAction(piece, index));
+    } else {
+      dispatch(movePieceStandOnBoardAction(piece, index, dragFrom));
     }
   }
 
@@ -61,7 +87,7 @@ const GGSquare: FC<Props> = ({ pieceHistory, index }) => {
   // #region レンダリング処理
   return (
     <div className="gg_square" ref={dropRef}>
-      {displayedPiece && <GGPiece piece={displayedPiece} isBoardPiece={true} />}
+      {displayedPiece && <GGPiece piece={displayedPiece} boardSquareIndex={index} />}
     </div>
   );
   // #endregion

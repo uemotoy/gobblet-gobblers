@@ -18,6 +18,7 @@ type MovePiecePayload = {
 
 // #region 定数
 export const MOVE_PIECE_FROM_STAND = 'BOARD/MOVE_PIECE_FROM_STAND';
+export const MOVE_PIECE_ON_BOARD = 'BOARD/MOVE_PIECE_ON_BOARD';
 // #endregion
 // #region 内部関数
 // #endregion
@@ -37,6 +38,18 @@ export function movePieceFromStandAction(
     payload: { piece, toIndex: moveToIndex },
   };
 }
+
+export function movePieceStandOnBoardAction(
+  piece: Piece,
+  moveToIndex: number,
+  moveFromIndex: number
+): ActionType<MovePiecePayload> {
+  return {
+    type: MOVE_PIECE_ON_BOARD,
+    payload: { piece, toIndex: moveToIndex, fromIndex: moveFromIndex },
+  };
+}
+
 // #endregion
 // #region 公開モジュール
 // #endregion

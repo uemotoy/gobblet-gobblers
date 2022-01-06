@@ -5,7 +5,7 @@ import { Avatar } from '@mui/material';
 import classNames from 'classnames';
 
 import { Piece } from 'utils/types';
-import { DRAG_FROM, GG_PIECE, PLAYER } from 'utils/constants';
+import { GG_PIECE, PLAYER } from 'utils/constants';
 
 import './GGPiece.scss';
 // #endregion
@@ -13,7 +13,7 @@ import './GGPiece.scss';
 type Props = {
   className?: string;
   piece: Piece;
-  isBoardPiece: boolean;
+  boardSquareIndex?: number;
 };
 
 // #endregion
@@ -24,13 +24,13 @@ type Props = {
 // #region 公開関数
 // #endregion
 // #region 公開モジュール
-const GGPiece: FC<Props> = ({ className, piece, isBoardPiece }) => {
+const GGPiece: FC<Props> = ({ className, piece, boardSquareIndex = -1 }) => {
   const [{ isDragging }, dragRef] = useDrag(
     () => ({
       type: GG_PIECE,
       item: {
         piece,
-        dragFrom: isBoardPiece ? DRAG_FROM.BOARD : DRAG_FROM.STAND,
+        dragFrom: boardSquareIndex,
       },
       collect: (monitor) => ({
         isDragging: Boolean(monitor.isDragging()),
