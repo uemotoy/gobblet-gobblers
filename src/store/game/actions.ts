@@ -25,9 +25,9 @@ export const MOVE_PIECE_ON_BOARD = 'BOARD/MOVE_PIECE_ON_BOARD';
 // #region 公開関数
 
 /**
- * 盤面の更新のアクション
- * @param piece 置いた駒の情報
- * @param moveToIndex 駒を置いた位置
+ * 駒置き場からの駒を移動するアクション
+ * @param piece 移動させた駒の情報
+ * @param moveToIndex 移動元のマスの位置
  */
 export function movePieceFromStandAction(
   piece: Piece,
@@ -39,6 +39,12 @@ export function movePieceFromStandAction(
   };
 }
 
+/**
+ * 盤上の駒を移動するアクション
+ * @param piece 移動させた駒の情報
+ * @param moveToIndex 移動先のマスの位置
+ * @param moveFromIndex 移動元のマスの位置
+ */
 export function movePieceStandOnBoardAction(
   piece: Piece,
   moveToIndex: number,

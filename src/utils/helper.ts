@@ -34,11 +34,6 @@ const LINE_COORDINATES = [
  * @returns 移動可能ならtrue, 不可ならfalseを返す
  */
 export function validatePieceMoving(movedPiece: Piece, placedPiece: Piece) {
-  // 自分の駒が置いてある場合は移動できない
-  if (movedPiece.player === placedPiece.player) {
-    return false;
-  }
-
   // 移動させる駒が置いてある駒より小さい場合は移動できない
   if (PIECE_SIZE_CONVERTER[movedPiece.size] <= PIECE_SIZE_CONVERTER[placedPiece.size]) {
     return false;
@@ -46,6 +41,11 @@ export function validatePieceMoving(movedPiece: Piece, placedPiece: Piece) {
   return true;
 }
 
+/**
+ * 現在の盤面から勝敗を判定する
+ * @param boardState 現在の盤面
+ * @returns 勝利プレーヤー。勝敗がついていない場合はnullを返す
+ */
 export function checkWinner(boardState: Piece[]) {
   // 勝敗判定を実施
   // 勝利条件を満たす直線があるか探索する

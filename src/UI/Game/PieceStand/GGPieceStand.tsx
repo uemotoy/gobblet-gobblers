@@ -1,5 +1,6 @@
 // #region import宣言
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 
 import { Player } from 'utils/types';
@@ -7,7 +8,6 @@ import { PLAYER } from 'utils/constants';
 import GGPiece from 'UI/shared/GGPiece/GGPiece';
 
 import './GGPieceStand.scss';
-import { useSelector } from 'react-redux';
 // #endregion
 // #region 型定義
 type Props = {

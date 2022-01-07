@@ -83,6 +83,7 @@ export function reducer(state = INITIAL_STATE, action: ActionType<any>) {
     }
     // #endregion
 
+    // #region MOVE_PIECE_ON_BOARD
     case MOVE_PIECE_ON_BOARD: {
       const { payload } = action;
       // 移動元のマスと移動先のマスの駒情報を更新する
@@ -99,6 +100,7 @@ export function reducer(state = INITIAL_STATE, action: ActionType<any>) {
 
       return { ...state, boardPieces: newBoard };
     }
+    // #endregion
 
     default: {
       return state;
