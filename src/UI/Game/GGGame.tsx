@@ -7,10 +7,10 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import GGPieceStand from 'UI/Game/PieceStand/GGPieceStand';
 import GGBoard from 'UI/Game/Board/GGBoard';
 import { PLAYER } from 'utils/constants';
-
-import './GGGame.scss';
 import { checkWinner } from 'utils/helper';
 import { Player } from 'utils/types';
+
+import './GGGame.scss';
 // #endregion
 // #region 型定義
 // #endregion

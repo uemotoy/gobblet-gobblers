@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { Player } from 'utils/types';
 import { PLAYER } from 'utils/constants';
-import GGPiece from 'UI/shared/GGPiece/GGPiece';
+import GGPiece from '../GGPiece/GGPiece';
 
 import './GGPieceStand.scss';
 // #endregion

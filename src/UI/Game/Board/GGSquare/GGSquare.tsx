@@ -4,7 +4,7 @@ import { useDrop } from 'react-dnd';
 import { useDispatch } from 'react-redux';
 import { movePieceFromStandAction, movePieceStandOnBoardAction } from 'store/game/actions';
 
-import GGPiece from 'UI/shared/GGPiece/GGPiece';
+import GGPiece from '../../GGPiece/GGPiece';
 import { GG_PIECE } from 'utils/constants';
 import { validatePieceMoving } from 'utils/helper';
 import { Piece } from 'utils/types';
