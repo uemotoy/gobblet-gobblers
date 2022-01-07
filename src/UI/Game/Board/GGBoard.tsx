@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 
-import GGSquare from './GGSquare/GGSquare';
+import GGSquare from './Square/GGSquare';
 import './GGBoard.scss';
 // #endregion
 // #region 型定義
