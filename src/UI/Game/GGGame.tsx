@@ -1,4 +1,6 @@
 // #region import宣言
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -7,6 +9,8 @@ import GGBoard from 'UI/Game/Board/GGBoard';
 import { PLAYER } from 'utils/constants';
 
 import './GGGame.scss';
+import { checkWinner } from 'utils/helper';
+import { Player } from 'utils/types';
 // #endregion
 // #region 型定義
 // #endregion
@@ -20,14 +24,32 @@ import './GGGame.scss';
 // #region 公開モジュール
 const GGGame = () => {
   // #region state変数
+  const [winner, setWinner] = useState<Player | null>(null);
   // #endregion
   // #region 内部変数
+  const { boardPieces } = useSelector((store) => store.game);
   // #endregion
   // #region 内部関数
   // #endregion
   // #region イベントハンドラ
   // #endregion
   // #region 副作用処理
+  useEffect(() => {
+    const currentBoardState = boardPieces.map((square) => square[square.length - 1]);
+
+    const result = checkWinner(currentBoardState);
+    if (result) {
+      setWinner(result);
+    }
+  }, [boardPieces]);
+
+  useEffect(() => {
+    if (winner) {
+      if (!Boolean(alert(`${winner} is winner!!!`))) {
+        setWinner(null);
+      }
+    }
+  }, [winner]);
   // #endregion
   // #region レンダリング処理
   return (
