@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import { Player } from 'utils/types';
 import { PLAYER } from 'utils/constants';
 import GGPiece from '../Piece/GGPiece';
+import { RootState } from 'store';
+import { GameState } from 'store/game/reducer';
 
 import './GGPieceStand.scss';
 // #endregion
@@ -28,7 +30,7 @@ const GGPieceStand: FC<Props> = ({ className, player }) => {
   // #region state変数
   // #endregion
   // #region 内部変数
-  const gameState = useSelector((state) => state.game);
+  const gameState = useSelector<RootState, GameState>((state) => state.game);
   const pieces = player === PLAYER.P1 ? gameState.player1Pieces : gameState.player2Pieces;
   // #endregion
   // #region 内部関数

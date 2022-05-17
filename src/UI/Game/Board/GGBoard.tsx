@@ -4,6 +4,9 @@ import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 
 import GGSquare from './Square/GGSquare';
+import { RootState } from 'store';
+import { GameState } from 'store/game/reducer';
+
 import './GGBoard.scss';
 // #endregion
 // #region 型定義
@@ -24,7 +27,7 @@ const GGBoard: FC<Props> = ({ className }) => {
   // #region state変数
   // #endregion
   // #region 内部変数
-  const { boardPieces } = useSelector((store) => store.game);
+  const { boardPieces } = useSelector<RootState, GameState>((store) => store.game);
   // #endregion
   // #region 内部関数
   // #endregion

@@ -9,6 +9,8 @@ import GGBoard from 'UI/Game/Board/GGBoard';
 import { PLAYER } from 'utils/constants';
 import { checkWinner } from 'utils/helper';
 import { Player } from 'utils/types';
+import { RootState } from 'store';
+import { GameState } from 'store/game/reducer';
 
 import './GGGame.scss';
 // #endregion
@@ -27,7 +29,7 @@ const GGGame = () => {
   const [winner, setWinner] = useState<Player | null>(null);
   // #endregion
   // #region 内部変数
-  const { boardPieces } = useSelector((store) => store.game);
+  const { boardPieces } = useSelector<RootState, GameState>((store) => store.game);
   // #endregion
   // #region 内部関数
   // #endregion
